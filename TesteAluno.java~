@@ -1,0 +1,34 @@
+
+import java.util.*;
+import java.util.functions.*;
+
+import static java.lang.System.out;
+
+public class TesteAluno {
+
+	public static void main(String args[]){
+		List<Aluno> alunos = buildAlunos(); 
+
+		out.println("---------------\nAlunos da turma:");
+		alunos.forEach(a -> { out.println("\t" + a); });
+
+		out.println("---------------\nAprovados:");
+		alunos.filter(a -> a.getNota() > 5).forEach(a -> { out.println("\t" + a); });
+
+		List<Aluno> aprovados = alunos.filter(a -> a.getNota() > 5).into(new ArrayList<Aluno>());
+		out.println("---------------\nPrimeira nota:");
+		System.out.println("\t" + aprovados.map(a -> a.getNota()).getFirst());		
+	}
+
+
+	static List<Aluno> buildAlunos() {
+		List<Aluno> alunos = new ArrayList<Aluno>();
+		alunos.add(new Aluno("Claudia", 7));
+		alunos.add(new Aluno("Paula", 9));
+		alunos.add(new Aluno("Ricardo", 6));
+		alunos.add(new Aluno("Flavia", 4));
+		alunos.add(new Aluno("Mario", 8));
+		alunos.add(new Aluno("Ana", 5));
+		return alunos;
+	}
+}
